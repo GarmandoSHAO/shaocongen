@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索结果</title>
+    <link rel="icon" href="{{ url_for('static', filename='icon/g.png') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon/g.png') }}" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .time-display {
+            font-size: 18px;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .button-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button-link:hover {
+            background-color: #0056b3;
+        }
+        .search-query {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .search-query strong {
+            color: #007bff;
+        }
+        .search-results {
+            margin: 20px 0;
+        }
+        .result-item {
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .result-item h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .result-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .result-item a:hover {
+            text-decoration: underline;
+        }
+        .result-item p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-size: 14px;
+        }
+        .search-container {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+        }
+        .search-form {
+            display: flex;
+            gap: 10px;
+        }
+        .search-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .search-button {
+            padding: 10px 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        /* 底部图标栏样式 */
+        .icon-bar {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            padding: 10px 0;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .icon-link {
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='images/banner.jpg') }}" alt="页面横幅" style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px;">
+        <h1>搜索结果</h1>
+        
+        <!-- 搜索栏 -->
+        <div class="search-container">
+            <form id="searchForm" action="/search" method="get" class="search-form">
+                <input type="text" id="searchInput" name="query" placeholder="请输入搜索内容..." class="search-input" required>
+                <button type="submit" class="search-button">搜索</button>
+            </form>
+        </div>
+        
+        <div class="search-query">
+            <p>您搜索的内容：<strong>{{ query }}</strong></p>
+        </div>
+        
+        <div class="search-results">
+            {% if empty_query %}
+            <p style="color: #dc3545; font-size: 16px;">请输入有效的搜索内容，不能为空或只有空格。</p>
+            {% elif query %}
+            {% if matched_results %}
+            <h2>内部搜索结果：</h2>
+            {% for result in matched_results %}
+            <div class="result-item">
+                <h3><a href="{{ result.url }}" target="_blank">{{ result.title }}</a></h3>
+                <p>{{ result.description }}</p>
+                <p style="font-size: 12px; color: #999;">分类：{{ result.category }}</p>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p style="color: #6c757d; font-size: 16px; margin: 20px 0;">没有找到搜索结果</p>
+            {% endif %}
+            
+            <h2>其他搜索：</h2>
+            <div class="result-item">
+                <h3><a href="https://www.wikipedia.org/wiki/{{ query }}" target="_blank">维基百科 - {{ query }}</a></h3>
+                <p>在维基百科中查找关于"{{ query }}"的信息</p>
+            </div>
+            <div class="result-item">
+                <h3><a href="https://www.google.com/search?q={{ query }}" target="_blank">Google搜索 - {{ query }}</a></h3>
+                <p>在Google中搜索"{{ query }}"</p>
+            </div>
+            <div class="result-item">
+                <h3><a href="https://www.baidu.com/s?wd={{ query }}" target="_blank">百度搜索 - {{ query }}</a></h3>
+                <p>在百度中搜索"{{ query }}"</p>
+            </div>
+            <div class="result-item">
+                <h3><a href="https://github.com/search?q={{ query }}" target="_blank">GitHub搜索 - {{ query }}</a></h3>
+                <p>在GitHub中搜索"{{ query }}"相关的项目</p>
+            </div>
+            {% else %}
+            <p>请输入搜索内容。</p>
+            {% endif %}
+        </div>
+        
+        <p><a href="{{ url_for('wiki') }}" class="button-link">返回WiKi导航</a></p>
+        <p>这是一个使用 Flask 框架创建的简单网页示例。</p>
+        <p>当前时间：<span id="current-time" class="time-display">{{ current_time }}</span></p>
+    </div>
+    
+    <!-- 底部图标栏 -->
+    <div class="icon-bar">
+        <a href="https://www.python.org/" target="_blank" class="icon-link" title="Python官方网站">
+            <img src="{{ url_for('static', filename='icon/python.png') }}" alt="Python图标" class="social-icon">
+        </a>
+        <a href="https://github.com/" target="_blank" class="icon-link" title="GitHub官方网站">
+            <img src="{{ url_for('static', filename='icon/github.png') }}" alt="GitHub图标" class="social-icon">
+        </a>
+        <a href="https://www.bytedance.com/" target="_blank" class="icon-link" title="字节跳动官方网站">
+            <img src="{{ url_for('static', filename='icon/bytedance.png') }}" alt="字节跳动图标" class="social-icon">
+        </a>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const query = document.getElementById('searchInput').value.trim();
+            if (query) {
+                window.location.href = '/search/' + encodeURIComponent(query);
+            }
+        });
+    </script>
+</body>
+</html>

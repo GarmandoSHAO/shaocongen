@@ -1,0 +1,90 @@
+{
+  "categories": [
+    {
+      "name": "推荐链接",
+      "links": [
+        {
+          "title": "维基百科",
+          "url": "https://www.wikipedia.org/",
+          "description": "自由的百科全书，提供多语言的知识内容"
+        },
+        {
+          "title": "Python官方文档",
+          "url": "https://docs.python.org/zh-cn/3/",
+          "description": "Python编程语言的官方中文文档"
+        },
+        {
+          "title": "Flask官方文档",
+          "url": "https://flask.palletsprojects.com/zh-cn/2.3.x/",
+          "description": "Flask Web框架的官方中文文档"
+        },
+        {
+          "title": "MDN Web文档",
+          "url": "https://developer.mozilla.org/zh-CN/",
+          "description": "Web开发技术的权威文档"
+        }
+      ]
+    },
+    {
+      "name": "常用Wiki",
+      "links": [
+        {
+          "title": "百度百科",
+          "url": "https://baike.baidu.com/",
+          "description": "中国最大的百科全书"
+        },
+        {
+          "title": "萌娘百科",
+          "url": "https://zh.moegirl.org.cn/",
+          "description": "专注于ACG文化的百科全书"
+        },
+        {
+          "title": "维基文库",
+          "url": "https://zh.wikisource.org/",
+          "description": "自由的图书馆"
+        }
+      ]
+    },
+    {
+      "name": "游戏Wiki",
+      "links": [
+        {
+          "title": "Minecraft Wiki",
+          "url": "https://minecraft.fandom.com/zh/wiki/Minecraft_Wiki",
+          "description": "Minecraft游戏的中文维基百科"
+        },
+        {
+          "title": "原神BWiki",
+          "url": "https://wiki.biligame.com/genshin/",
+          "description": "原神游戏的BWiki百科"
+        },
+        {
+          "title": "原神Wiki",
+          "url": "https://genshin-impact.fandom.com/zh/wiki/原神_Wiki",
+          "description": "原神游戏的中文维基百科"
+        },
+        {
+          "title": "英雄联盟Wiki",
+          "url": "https://lol.fandom.com/zh/wiki/LolWiki",
+          "description": "英雄联盟游戏的中文维基百科"
+        },
+        {
+          "title": "魔兽世界Wiki",
+          "url": "https://wowpedia.fandom.com/zh/wiki/Wowpedia",
+          "description": "魔兽世界游戏的中文维基百科"
+        },
+        {
+          "title": "明日方舟Wiki",
+          "url": "https://prts.wiki/",
+          "description": "明日方舟游戏的PRTS百科"
+        },
+        {
+          "title": "明日方舟BWiki",
+          "url": "https://wiki.biligame.com/arknights",
+          "description": "明日方舟游戏的BWiki百科"
+        }
+
+      ]
+    }
+  ]
+}

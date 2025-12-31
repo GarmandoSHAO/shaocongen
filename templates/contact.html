@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们</title>
+    <link rel="icon" href="{{ url_for('static', filename='icon/g.png') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon/g.png') }}" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .time-display {
+            font-size: 18px;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .button-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button-link:hover {
+            background-color: #0056b3;
+        }
+        .contact-info {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        .contact-info p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .contact-info strong {
+            color: #333;
+        }
+        /* 底部图标栏样式 */
+        .icon-bar {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            padding: 10px 0;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .icon-link {
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='images/banner.jpg') }}" alt="页面横幅" style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px;">
+        <h1>联系我们</h1>
+        <div class="contact-info">
+            <!-- <p><strong>电话号码：</strong><a href="#">17205105336</a></p> -->
+            <p><strong>邮箱地址：</strong><a href="#">2911993746@qq.com</a></p>
+            <p><strong>联系地址：</strong><a href="#">华盛顿白宫</a></p>
+        </div>
+        
+        <p><a href="{{ url_for('home') }}" class="button-link">返回首页</a></p>
+
+        <p>当前时间：<span id="current-time" class="time-display">{{ current_time }}</span></p>
+    </div>
+    
+    <!-- 底部图标栏 -->
+    <div class="icon-bar">
+        <a href="https://www.python.org/" target="_blank" class="icon-link" title="Python官方网站">
+            <img src="{{ url_for('static', filename='icon/python.png') }}" alt="Python图标" class="social-icon">
+        </a>
+        <a href="https://github.com/" target="_blank" class="icon-link" title="GitHub官方网站">
+            <img src="{{ url_for('static', filename='icon/github.png') }}" alt="GitHub图标" class="social-icon">
+        </a>
+        <a href="https://www.bytedance.com/" target="_blank" class="icon-link" title="字节跳动官方网站">
+            <img src="{{ url_for('static', filename='icon/bytedance.png') }}" alt="字节跳动图标" class="social-icon">
+        </a>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
