@@ -28,7 +28,7 @@ def wiki():
     with open(wiki_file, 'r', encoding='utf-8') as f:
         wiki_data = json.load(f)
     return render_template('wiki.html', wiki_data=wiki_data)
-    
+
 @app.route('/search/<query>')
 def search(query):
     import json
@@ -81,5 +81,6 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
     
